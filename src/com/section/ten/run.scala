@@ -37,8 +37,8 @@ class ArrayElement(conts:Array[String]) extends Element {
     println("this is ArrayElement")
   }
 
-  override val width: Int = _
-  override val height: Int = _
+  override val width: Int = conts.length
+  override val height: Int = conts.length
 }
 
 
@@ -62,6 +62,10 @@ class UniformElent(ch: Char,override val width:Int,override val height: Int)
 
 object run {
 
+  def invokeDemo(element:Element): Unit = {
+    element.demo()
+  }
+
   def main(args: Array[String]): Unit = {
     def getconfig:Int = 3
 
@@ -72,9 +76,9 @@ object run {
     val listElement = new ListElement("hello")
     listElement.contents.foreach(println(_))
 
-    val uniformElent = new UniformElent
-    uniformElent.invokeDemo(uniformElent)
-    uniformElent.invokeDemo(new ArrayElement(Array("")))
-    uniformElent.invokeDemo(new ListElement("hello"))
+
+    invokeDemo(new UniformElent('1', 10,11))
+    invokeDemo(new ArrayElement(Array("")))
+    invokeDemo(new ListElement("hello"))
   }
 }
