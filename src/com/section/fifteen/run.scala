@@ -12,6 +12,7 @@ package com.section.fifteen
   * 8 元组模式
   * 9 类型模式,类型测试 isinstanceof，类型转换 asinstanceof
   * 10 类型擦除：和Java一样，类型参数信息没有保留到运行期。唯一的例外是数组Array
+  * 11 变量绑定    a@b 若匹配成功，则a变量绑定b
   */
 
 abstract class Expr
@@ -20,8 +21,6 @@ case class Var(name:String) extends  Expr
 case class Number(num:Double) extends Expr
 case class UnOp(operator:String,arg:Expr) extends Expr
 case class BinOp(operator:String,left:Expr,right:Expr) extends Expr
-
-
 
 object run extends  App {
   val v = Var("x")
@@ -58,6 +57,7 @@ object run extends  App {
   }
 
 
+
   def generalSize(x:Any) = x match {
     case s:String => println("String")
     case m:Map[_,_] => println("Map")
@@ -77,4 +77,11 @@ object run extends  App {
   println(isInstanceMap(Map("1"->1)))  //true
   println(isInstanceArray(Array(1)))  //true
   println(isInstanceArray(Array("1")))  //true
+
+  def generalSize22(x:Any) = x match {
+    case (a,b,z@c) => println(a + " " + b + " " + c + " " + z)
+    case _=>
+  }
+
+  generalSize22((1,2,3))
 }
